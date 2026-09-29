@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电脑桌面</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    /* 背景图片设置 */
+    background-image: url("bliss.jpg");
+    background-size: cover;     /* 铺满整个屏幕 */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height:100vh;
+    padding-top:70px;
+    padding-bottom:90px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;   /* 内容靠左 */
+    justify-content:center;
+    padding-left:120px;       /* 控制图标距离页面左边的距离，可调整 */
+}
+/* 右上角时间 */
+.top-path-bar{
+    position:fixed;
+    top:0;
+    right:0;
+    z-index:10;
+    width:auto;
+    height:auto;
+    display:flex;
+    align-items:center;
+    padding:18px 24px;
+    color:#ffffff;
+    font-size:38px;
+    font-weight:300;
+    letter-spacing:1px;
+    text-shadow:0 2px 5px rgba(0,0,0,0.55);
+}
+.path-item{
+    display:flex;
+    align-items:center;
+}
+.path-divider{
+    display:none;
+}
+.path-text{
+    color:inherit;
+    opacity:0.96;
+}
+.home-button{
+    position:fixed;
+    top:35px;
+    left:50%;
+    z-index:11;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:5px;
+    background:rgba(31,43,51,0.92);
+    color:#ffffff;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.28);
+    transform:translateX(-50%);
+    transition:background 0.18s ease, transform 0.18s ease;
+}
+.home-button:hover{
+    background:rgba(44,59,69,0.98);
+    transform:translate(-50%, -2px);
+}
+.home-icon{
+    font-size:16px;
+    line-height:1;
+}
+/* 图标容器：改成垂直一列 */
+.container{
+    display:flex;
+    flex-direction:column; /* 纵向排列 */
+    gap:36px;              /* 上下图标之间的间距，按需调大/调小 */
+}
+.card-item{
+    width:80px; /* 固定整个图标块的总宽度！强制统一宽度，解决emoji宽度不一致 */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    padding:4px;
+    border-radius:4px;
+    transition: all 0.18s ease;
+}
+/* hover直接给card-item加XP蓝色选中背景，不再使用伪元素before！！ */
+.card-item:hover{
+    background:rgba(173,214,255,0.35);
+    border:1px dashed rgba(35,75,139,0.55);
+}
+/* ========== 图标样式 ========== */
+.card-icon{
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    line-height:1;
+    /* XP图标浮雕阴影 */
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6))
+            drop-shadow(0 2px 2px rgba(0,0,0,0.35));
+    transition: all 0.18s ease;
+    transform-origin:center; /* 缩放中心点强制正中间 */
+}
+/* 悬浮：图标轻微放大提亮，只原地缩放，不移位 */
+.card-item:hover .card-icon{
+    transform: scale(1.06);
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.7))
+            drop-shadow(0 2px 3px rgba(0,0,0,0.4))
+            brightness(1.08);
+}
+/* 点击按下缩小效果 */
+.card-item:active .card-icon{
+    transform: scale(0.96);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4));
+}
+/* XP桌面文字，hover出现蓝色背景 */
+.card-text{
+    color:#ffffff;
+    font-size:18px;
+    text-align:center;
+    line-height:1.4;
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.9),
+        0 0 4px rgba(0,0,0,0.6);
+    transition: all 0.18s ease;
+}
+.card-item:hover .card-text{
+    background:rgba(35,75,139,0.45);
+    border-radius:2px;
+    padding:1px 4px;
+}
+/* 浅白色底部导览栏 */
+.bottom-nav{
+    position:fixed;
+    z-index:10;
+    left:0;
+    right:0;
+    bottom:0;
+    min-height:68px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:10px 22px;
+    background:rgba(250,252,253,0.94);
+    border-top:1px solid rgba(255,255,255,0.8);
+    box-shadow:0 -3px 14px rgba(0,0,0,0.18);
+    backdrop-filter:blur(8px);
+}
+.nav-item{
+    display:flex;
+    align-items:center;
+    width:44px;
+    height:44px;
+    justify-content:center;
+    padding:0;
+    border:1px solid transparent;
+    border-radius:5px;
+    color:#25313a;
+    font-size:14px;
+    cursor:default;
+}
+.nav-icon{
+    font-size:22px;
+    line-height:1;
+}
+.bottom-status{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-left:auto;
+    color:#25313a;
+    font-size:16px;
+}
+.battery-icon{
+    font-size:24px;
+    line-height:1;
+}
+.finish-button{
+    position:fixed;
+    right:24px;
+    bottom:88px;
+    z-index:11;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 15px;
+    border:1px solid rgba(255,255,255,0.8);
+    border-radius:5px;
+    background:rgba(250,252,253,0.94);
+    color:#25313a;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,0.24);
+    backdrop-filter:blur(8px);
+    transition:transform 0.18s ease, background 0.18s ease;
+}
+.finish-button:hover{
+    background:#ffffff;
+    transform:translateY(-2px);
+}
+.finish-icon{
+    font-size:21px;
+    line-height:1;
+}
+</style>
+</head>
+<body>
+    <div class="top-path-bar">
+        <div class="path-item">
+            <span class="path-text" id="current-time">00:00</span>
+        </div>
+    </div>
+    <div class="home-button" role="button" tabindex="0" onclick="window.location.href='index.html'" onkeydown="if(event.key === 'Enter' || event.key === ' ') window.location.href='index.html'">
+        <span class="home-icon">▣</span>
+        <span>返回首页</span>
+    </div>
+    <div class="container">
+        <div class="card-item" onclick="window.location.href='memory.html'">
+            <div class="card-icon">📝</div>
+            <div class="card-text">备忘录</div>
+        </div>
+        <div class="card-item" onclick="window.location.href='jinruchat.html'">
+            <div class="card-icon">🗨️</div>
+            <div class="card-text">聊天记录</div>
+        </div>
+        <div class="card-item" onclick="window.location.href='jinruphoto.html'">
+            <div class="card-icon">🖼️</div>
+            <div class="card-text">图片</div>
+        </div>
+        <div class="card-item" onclick="window.location.href='character.html'">
+            <div class="card-icon">👤</div>
+            <div class="card-text">人物档案</div>
+        </div>
+        <div class="card-item" onclick="window.location.href='testimony.html'">
+            <div class="card-icon">🔎</div>
+            <div class="card-text">搜索引擎</div>
+        </div>
+    </div>
+    <nav class="bottom-nav" aria-label="桌面导览">
+        <div class="nav-item" title="备忘录" aria-label="备忘录">
+            <span class="nav-icon">📝</span>
+        </div>
+        <div class="nav-item" title="聊天记录" aria-label="聊天记录">
+            <span class="nav-icon">🗨️</span>
+        </div>
+        <div class="nav-item" title="图片" aria-label="图片">
+            <span class="nav-icon">🖼️</span>
+        </div>
+        <div class="nav-item" title="人物档案" aria-label="人物档案">
+            <span class="nav-icon">👤</span>
+        </div>
+        <div class="nav-item" title="搜索引擎" aria-label="搜索引擎">
+            <span class="nav-icon">🔎</span>
+        </div>
+        <div class="bottom-status" aria-label="系统状态">
+            <span class="battery-icon" title="电量充足" aria-label="满格电量">🔋</span>
+            <span id="bottom-time">00:00</span>
+        </div>
+    </nav>
+    <div class="finish-button" role="button" tabindex="0" onclick="window.location.href='final.html'" onkeydown="if(event.key === 'Enter' || event.key === ' ') window.location.href='final.html'">
+        <span class="finish-icon">✅</span>
+        <span>我调查好了</span>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = hours + ':' + minutes;
+            document.getElementById('current-time').textContent = currentTime;
+            document.getElementById('bottom-time').textContent = currentTime;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

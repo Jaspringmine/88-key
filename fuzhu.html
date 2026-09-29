@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城南警厅辅助验证系统</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    /* 深蓝网格背景 */
+    background: #0f2b52;
+    background-image: 
+        linear-gradient(rgba(40, 80, 140, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 80, 140, 0.3) 1px, transparent 1px);
+    background-size:30px 30px;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+/* 登录白色卡片 */
+.login-card{
+    width:580px;
+    background:#ffffff;
+    border-radius:20px;
+    padding:40px 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    text-align:center;
+}
+.shield-icon{
+    font-size:60px;
+    color:#154790;
+    margin-bottom:10px;
+}
+h1{
+    font-size:34px;
+    color:#154790;
+    margin-bottom:16px;
+}
+.desc-text{
+    font-size:20px;
+    color:#445570;
+    margin-bottom:36px;
+}
+/* 输入框行，改为单行整宽 */
+.input-row{
+    margin-bottom:20px;
+}
+.input-item input{
+    width:100%;
+    height:52px;
+    border:1px solid #b0bccc;
+    border-radius:8px;
+    padding:0 16px;
+    font-size:18px;
+}
+/* 登录按钮 */
+.login-btn{
+    width:100%;
+    height:64px;
+    background:#154790;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-size:26px;
+    margin:24px 0 16px 0;
+    cursor:pointer;
+    transition:0.2s;
+}
+.login-btn:hover{
+    background:#0f3875;
+}
+/* 返回按钮样式 */
+.back-btn{
+    width:100%;
+    height:52px;
+    background:#ffffff;
+    color:#154790;
+    border:1px solid #154790;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s;
+}
+.back-btn:hover{
+    background:#f0f4f9;
+}
+/* 底部状态文字 */
+.status-text{
+    font-size:18px;
+    color:#227038;
+    margin-top:24px;
+}
+.green-dot{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#22b559;
+    margin-right:6px;
+}
+</style>
+</head>
+<body>
+<div class="login-card">
+    <div class="shield-icon">🛡️</div>
+    <h1>城南警厅辅助验证系统</h1>
+    <div class="desc-text">您正在进入城南警厅辅助验证系统</div>
+
+    <div class="input-row">
+        <div class="input-item">
+            <input type="text" placeholder="👤 账号" id="songxiaowen">
+        </div>
+    </div>
+    <div class="input-row">
+        <div class="input-item">
+            <input type="password" placeholder="🔒 密码" id="19870921">
+        </div>
+    </div>
+
+    <button class="login-btn" onclick="loginCheck()">登录</button>
+    <!-- 返回人物档案列表按钮，跳转到character.html -->
+    <button class="back-btn" onclick="window.location.href='character.html'">返回人物档案列表</button>
+
+    <div class="status-text">
+        <span class="green-dot"></span>系统运行正常 · 安全连接 · 数据加密
+    </div>
+</div>
+
+<script>
+function loginCheck(){
+    // =========【修改这里，填写你登录成功后要跳转的页面文件名】=========
+    // 示例：window.location.href = "game.html";  登录成功跳转到电脑桌面game.html
+    window.location.href = "qin.html";
+}
+</script>
+</body>
+</html>
+

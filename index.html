@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八十八键证词</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #1c1c20; color: #333; line-height: 1.8; }
+/* 桌面宽版：整页居中，最大宽度放大 */
+.page { max-width: 1080px; margin: 0 auto; background: transparent; min-height: 100vh; padding: 0 24px 60px; }
+.cover { width: 100%; display: block; border-radius: 14px; margin: 36px 0 28px; box-shadow: 0 10px 40px rgba(0,0,0,0.45); }
+.card { background: #fff; margin: 0; padding: 52px 64px; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+.p { font-size: 18px; color: #333; line-height: 2; margin-bottom: 20px; opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease, transform 0.6s ease; cursor: pointer; }
+.p.visible { opacity: 1; transform: translateY(0); }
+.hl { color: #e8734a; font-weight: 700; }
+.divider { height: 1px; background: #eee; margin: 28px 0; opacity: 0; transition: opacity 0.6s ease; }
+.divider.visible { opacity: 1; }
+.open { font-weight: 800; font-size: 18px; text-decoration: underline; text-underline-offset: 4px; color: #e8734a; cursor: pointer; }
+.open:hover { opacity: 0.7; }
+.hint { background: #fff8f5; border-radius: 12px; padding: 18px 22px; margin-top: 26px; display: flex; align-items: center; gap: 12px; border: 1px solid #ffe8dd; opacity: 0; transition: opacity 0.6s ease; }
+.hint.visible { opacity: 1; }
+.hint .t { font-size: 15px; color: #999; }
+.hint .t b { color: #e8734a; }
+/* 新增浅蓝色提示样式 */
+.hint-blue {
+    background: #d0e8ff;
+    border-radius: 12px;
+    padding: 14px 22px;
+    margin-top:14px;
+    text-align:center;
+    color:#1f4e79;
+    font-size:15px;
+    border:1px solid #b8d8f5;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+.hint-blue.visible { opacity: 1; }
+.tap-hint { text-align: center; color: #8a8a90; font-size: 14px; margin-top: 18px; transition: opacity 0.3s ease; }
+/* 平板收窄 */
+@media (max-width: 900px) {
+  .page { max-width: 720px; }
+  .card { padding: 40px 36px; }
+  .p { font-size: 17px; }
+}
+/* 手机：回到接近原版的窄版体验 */
+@media (max-width: 600px) {
+  body { background: #f0f0f0; }
+  .page { max-width: 100%; padding: 0 0 40px; }
+  .cover { border-radius: 0; margin: 0 0 16px; box-shadow: none; }
+  .card { border-radius: 16px; margin: 0 14px; padding: 30px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .p { font-size: 17px; }
+  .tap-hint { color: #ccc; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <img src="images/cover.png" class="cover" alt="八十八键证词">
+  <div class="card" id="card">
+    <p class="p" data-index="0">城南市以艺术闻名，曾培养出多名优秀的艺术家，同时城南钢琴比赛也是全国最隆重的钢琴比赛，各家才子都想入门比试比试。</p>
+    <p class="p" data-index="1">近些年城南大学的<span class="hl">沈依莲</span>与<span class="hl">谢湄</span>相继斩获冠军，有的人说沈依莲每个音的颗粒感更干净，也有人说谢湄的声部层次做得堪称完美。</p>
+    <p class="p" data-index="2">今年的比赛是她们第一次同台竞技，大家都想看她们一较高下，钢琴比赛的热潮更涌。</p>
+    <p class="p" data-index="3">可偏偏，就在大赛的前一天——<br><span class="hl">谢湄出了意外。</span></p>
+    <p class="p" data-index="4">谢湄被发现惨死于家中，不仅头部被子弹射击，身上也各种淤青伤痕不断。</p>
+    <p class="p" data-index="5">一时间社会舆论爆炸。</p>
+    <div class="divider" data-index="6"></div>
+    <p class="p" data-index="7">而你，<span class="hl">宋小雯，</span>作为城南警察厅数据部的核心警员，城南警察厅派你接此重任，调查出杀害<span class="hl">谢湄</span>的真凶。</p>
+    <p class="p" data-index="8" style="margin-top:28px">接下来，<span class="open" onclick="event.stopPropagation(); window.location.href='game.html'">打开电脑</span>，里面有案件的全部信息。</p>
+    <div class="hint" data-index="9"><div style="font-size:24px">📋</div><div class="t">点击 <b>"打开电脑"</b> 进入案件调查</div></div>
+    <!-- 新增浅蓝色提示，顺序接在后面，自动逐行显示 -->
+    <div class="hint-blue" data-index="10">记得善用搜索引擎</div>
+  </div>
+  <div class="tap-hint" id="tapHint">👆 点击屏幕继续</div>
+</div>
+<script>
+var currentIndex = 0;
+var elements = document.querySelectorAll('.p, .divider, .hint, .hint-blue');
+var total = elements.length;
+var card = document.getElementById('card');
+var tapHint = document.getElementById('tapHint');
+function showNext() {
+  if (currentIndex >= total) {
+    tapHint.style.opacity = '0';
+    setTimeout(function() { tapHint.style.display = 'none'; }, 300);
+    return;
+  }
+  elements[currentIndex].classList.add('visible');
+  currentIndex++;
+  if (currentIndex >= total) {
+    tapHint.style.opacity = '0';
+    setTimeout(function() { tapHint.style.display = 'none'; }, 300);
+  }
+}
+card.addEventListener('click', function(e) {
+  if (e.target.classList.contains('open')) return;
+  showNext();
+});
+// 显示第一条
+showNext();
+</script>
+</body>
+</html>
