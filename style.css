@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+
+body {
+    background: url("https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9rns2rl98/31010013809b40389000312009000711~tplv-a9rns2rl98-image.image");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 卡片容器，横向排列4个模块 */
+.container {
+    display: flex;
+    gap: 48px;
+}
+
+/* 单个卡片样式 */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-icon {
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #2178dd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card-text {
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+/* 右下角按钮 */
+.finish-btn {
+    position: fixed;
+    right: 60px;
+    bottom: 60px;
+    background: #ffffff;
+    color: #2178dd;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-size: 22px;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}

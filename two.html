@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新闻详情</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background:#ffffff;
+    color:#333;
+    line-height:1.7;
+}
+.header-top{
+    background:#f8fafc;
+    padding:14px 24px;
+    font-size:16px;
+    color:#444;
+}
+.container{
+    max-width:920px;
+    margin:36px auto;
+    padding:0 28px;
+}
+.back{
+    font-size:16px;
+    color:#666;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+.back:hover{
+    color:#222;
+}
+h1{
+    font-size:28px;
+    line-height:1.4;
+    margin-bottom:10px;
+}
+.news-meta{
+    color:#666;
+    font-size:16px;
+    padding-bottom:16px;
+    border-bottom:1px solid #dddddd;
+    margin-bottom:24px;
+}
+.img-box{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+.img-box img{
+    width:100%;
+    display:block;
+}
+.img-caption{
+    text-align:center;
+    font-size:15px;
+    color:#555;
+    margin-bottom:24px;
+}
+.content p{
+    font-size:17px;
+    margin-bottom:16px;
+    text-indent:2em;
+}
+.btn-back-desktop{
+    margin-top:30px;
+    padding:9px 16px;
+    background:#1f4e79;
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:15px;
+}
+.btn-back-desktop:hover{
+    background:#2c5f8a;
+}
+</style>
+</head>
+<body>
+    <div class="header-top">
+        ● 城南警察厅数据部
+    </div>
+    <div class="container">
+        <div class="back" id="backBtn">← 返回</div>
+        <h1>城南双冠晚宴同框 尽显强者惺惺相惜</h1>
+        <div class="news-meta">城南本地事儿 1月5日讯</div>
+
+        <div class="img-box">
+            <img src="images/two.jpg" alt="沈依莲谢湄晚宴同框">
+        </div>
+        <div class="img-caption">沈依莲、谢湄在钢琴赛事答谢晚宴合影。照片摄于城南艺术中心晚宴现场。</div>
+
+        <div class="content">
+            <p>本报讯 城南钢琴赛事答谢晚宴现场星光熠熠，两届赛事冠军沈依莲与谢湄的同框亮相，瞬间成为全场焦点。两位顶尖钢琴选手全程相谈甚欢，相处融洽自然，完全打破了外界对顶尖同行之间的刻板印象。</p>
+            <p>作为城南钢琴赛事连续两届的最高荣誉得主，两人此前就早已通过彼此的演奏作品互相关注，却一直没有机会正式碰面。当晚的晚宴上，她们挨着坐在一起，时不时低头笑着交流练琴的心得，连碰杯时都带着同频的默契。</p>
+            <p>“我们之前就一直关注对方的演奏，这次面对面聊，发现很多对作品的处理想法居然不谋而合。”沈依莲笑着说。谢湄也坦言，自己学琴时就曾把沈依莲的演奏当作参考，这次见面更像是找到同频的伙伴，“强者之间从来不是竞争的对立，而是互相照亮的共鸣。”</p>
+            <p>这场同框画面也被在场的业内人士拍下，很快在本地音乐圈传开，不少人都感慨，这才是顶尖选手之间最动人的惺惺相惜。</p>
+        </div>
+        <button class="btn-back-desktop" onclick="location.href='testimony.html'">返回搜索桌面</button>
+    </div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const keyword = urlParams.get('q');
+document.getElementById("backBtn").onclick = function(){
+    if(keyword !== null && keyword.trim() !== ""){
+        location.href = `result.html?q=${encodeURIComponent(keyword)}`;
+    }else{
+        location.href = "result.html";
+    }
+}
+</script>
+</body>
+</html>

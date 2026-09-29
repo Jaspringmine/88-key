@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>系统搜索</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#f7f9f4;
+    min-height:100vh;
+}
+/*顶部导航栏，深蓝色*/
+.top-bar{
+    background-color:#1f4e79;
+    color:#fff;
+    font-size:26px;
+    padding:16px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.top-icon-group{
+    display:flex;
+    gap:30px;
+    font-size:24px;
+}
+/*搜索框容器*/
+.search-wrap{
+    width:100%;
+    max-width:700px;
+    margin:120px auto 0;
+    position:relative;
+}
+.search-input-box{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:999px;
+    padding:14px 22px;
+}
+.search-input-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:18px;
+    background:transparent;
+    padding:0 12px;
+}
+.search-input-box .search-icon{
+    font-size:20px;
+    color:#666;
+}
+.search-input-box .arrow{
+    cursor:pointer;
+    color:#666;
+}
+/*动态历史下拉框*/
+.history-dropdown{
+    position:absolute;
+    width:100%;
+    background:#fff;
+    margin-top:8px;
+    border-radius:12px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.1);
+    overflow:hidden;
+    display:none;
+}
+.history-item{
+    padding:12px 24px;
+    font-size:17px;
+    cursor:pointer;
+}
+.history-item:hover{
+    background:#f1f3f6;
+}
+/*返回桌面按钮 右下角*/
+.back-btn{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    padding:8px 16px;
+    border:1px solid #99b8d8;
+    background:#e9f2fb;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:15px;
+}
+.back-btn:hover{
+    background:#d8e8f7;
+}
+</style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>系统搜索</span>
+        <div class="top-icon-group">
+            <span>⚙</span>
+            <span>👤</span>
+        </div>
+    </div>
+
+    <div class="search-wrap">
+        <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input id="searchInput" placeholder="请输入你想查找的内容">
+            <span class="arrow" id="toggleHistory">▼</span>
+        </div>
+        <!--动态历史记录下拉-->
+        <div class="history-dropdown" id="historyBox"></div>
+    </div>
+
+    <button class="back-btn" onclick="location.href='game.html'">返回电脑界面</button>
+
+<script>
+//有效关键词和对应跳转页面
+const keywordMap = {
+    "城南":"city.html",
+    "城南市":"city.html",
+    "沈依莲":"result.html?q=沈依莲",
+    "谢湄":"result.html?q=谢湄",
+    "谢川":"result.html?q=谢川",
+    "魏渊":"result.html?q=魏渊",
+    "唐堂":"result.html?q=唐堂",
+};
+//从本地读取搜索历史
+let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+const historyBox = document.getElementById("historyBox");
+const searchInput = document.getElementById("searchInput");
+const toggleHistory = document.getElementById("toggleHistory");
+
+//渲染历史记录
+function renderHistory(){
+    historyBox.innerHTML = "";
+    if(searchHistory.length === 0){
+        historyBox.style.display = "none";
+        return;
+    }
+    searchHistory.forEach(word=>{
+        const div = document.createElement("div");
+        div.className = "history-item";
+        div.innerText = word;
+        div.onclick = function(){
+            searchInput.value = word;
+            doSearch(word);
+        }
+        historyBox.appendChild(div);
+    })
+    historyBox.style.display = "block";
+}
+
+//点击下拉箭头，展示/隐藏历史
+toggleHistory.onclick = function(){
+    if(historyBox.style.display === "block"){
+        historyBox.style.display = "none";
+    }else{
+        renderHistory();
+    }
+}
+
+//执行搜索
+function doSearch(text){
+    const trimText = text.trim();
+    if(!trimText) return;
+    //存入历史，去重，最多保存8条
+    if(!searchHistory.includes(trimText)){
+        searchHistory.unshift(trimText);
+        if(searchHistory.length>8) searchHistory.pop();
+        localStorage.setItem("searchHistory",JSON.stringify(searchHistory));
+    }
+    //匹配跳转
+    if(keywordMap.hasOwnProperty(trimText)){
+        location.href = keywordMap[trimText];
+    }else{
+        location.href = "notfound.html";
+    }
+}
+
+//回车搜索
+searchInput.onkeydown = function(e){
+    if(e.key === "Enter"){
+        doSearch(this.value);
+    }
+}
+//点击页面空白关闭下拉
+document.addEventListener("click",function(e){
+    if(!document.querySelector(".search-wrap").contains(e.target)){
+        historyBox.style.display = "none";
+    }
+})
+</script>
+</body>
+</html>

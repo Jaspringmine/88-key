@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新闻详情</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background:#fff;
+    color:#333;
+    line-height:1.7;
+}
+.header-top{
+    background:#f8fafc;
+    padding:14px 24px;
+    font-size:16px;
+    color:#444;
+}
+.container{
+    max-width:860px;
+    margin:40px auto;
+    padding:0 30px;
+}
+.back{
+    font-size:16px;
+    color:#666;
+    cursor:pointer;
+    margin-bottom:28px;
+}
+.back:hover{
+    color:#222;
+}
+h1{
+    font-size:28px;
+    line-height:1.4;
+    margin-bottom:12px;
+}
+.news-meta{
+    color:#666;
+    font-size:16px;
+    padding-bottom:20px;
+    border-bottom:1px solid #ddd;
+    margin-bottom:24px;
+}
+/* 图片区域 */
+.img-box{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+.img-box img{
+    width:100%;
+    display:block;
+}
+.img-caption{
+    text-align:center;
+    font-size:15px;
+    color:#555;
+    margin-bottom:24px;
+}
+.content p{
+    font-size:18px;
+    margin-bottom:18px;
+    text-indent:2em;
+}
+/* 返回桌面按钮 */
+.btn-back-desktop{
+    margin-top:40px;
+    padding:10px 18px;
+    background:#1f4e79;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+.btn-back-desktop:hover{
+    background:#2c5f8a;
+}
+</style>
+</head>
+<body>
+    <div class="header-top">
+        ● 城南警察厅数据部
+    </div>
+    <div class="container">
+        <div class="back" onclick="location.href='result.html?q=唐堂'">← 返回</div>
+        <h1>画家唐堂成立个人画室，专注艺术创作</h1>
+        <div class="news-meta">城南本地事儿 3月22日讯</div>
+
+        <!-- 图片部分，把图片放到同文件夹，文件名改成tang.jpg -->
+        <div class="img-box">
+            <img src="images/tang.jpg" alt="唐堂">
+        </div>
+        <div class="img-caption">唐堂在个人画室中创作。</div>
+
+        <div class="content">
+            <p>本报讯 3月21日，城南本土知名画家唐堂的个人画室正式揭牌运营，为本地艺术创作交流再添一处新阵地。</p>
+            <p>作为深耕城南艺术圈多年的创作者，唐堂长期聚焦本土风物题材创作，其作品多以城南街巷、山城旧景为核心元素，风格细腻鲜活，深受本地书画爱好者喜爱。此次成立个人画室，既是他多年艺术创作历程的阶段性沉淀，也将面向周边艺术爱好者开放，定期开展小型作品分享、公益写生交流等活动，为城南本土艺术生态搭建更贴近大众的互动平台。</p>
+            <p>据了解，画室后续还将陆续推出本土青年画家作品联展、少儿公益美术课等系列活动，让艺术创作进一步融入城南居民的日常文化生活。</p>
+        </div>
+        <button class="btn-back-desktop" onclick="location.href='testimony.html'">返回搜索桌面</button>
+    </div>
+</body>
+</html>

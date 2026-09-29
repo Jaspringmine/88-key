@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搜索结果</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#ffffff;
+    color:#333;
+}
+/*顶部栏 */
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 20px;
+    font-size:15px;
+    color:#555;
+    background:#f8fafc;
+}
+.time-text{
+    font-size:14px;
+    color:#888;
+}
+.container{
+    max-width:900px;
+    margin:32px auto;
+    padding:0 24px;
+}
+.back{
+    display:flex;
+    align-items:center;
+    font-size:16px;
+    color:#667;
+    cursor:pointer;
+    margin-bottom:24px;
+}
+.back span{
+    margin-right:6px;
+}
+.title-main{
+    font-size:22px;
+    margin-bottom:20px;
+    padding-bottom:14px;
+    border-bottom:1px solid #ddd;
+}
+.highlight-word{
+    color:#b88646;
+}
+.result-card{
+    background:#f7f9fc;
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:16px;
+    border:1px solid #e9edf2;
+    cursor:pointer;
+}
+.result-card:hover{
+    background:#eef3f9;
+}
+.card-title{
+    font-size:18px;
+    margin-bottom:6px;
+}
+.card-key{
+    font-size:15px;
+    color:#777;
+}
+</style>
+</head>
+<body>
+    <div class="header-top">
+        <div>● 城南警察厅数据部</div>
+        <div class="time-text"> </div>
+        <div class="time-text"> </div>
+    </div>
+    <div class="container">
+        <div class="back" onclick="location.href='testimony.html'">
+            <span>←</span> 返回
+        </div>
+        <h1 class="title-main">搜索“<span class="highlight-word" id="searchWord">谢湄</span>”的结果</h1>
+        <!--结果卡片-->
+        <div class="result-card" id="card1">
+            <div class="card-title"></div>
+            <div class="card-key"></div>
+        </div>
+        <div class="result-card" id="card2">
+            <div class="card-title"></div>
+            <div class="card-key"></div>
+        </div>
+    </div>
+<script>
+// 获取url参数，读取搜索词
+const urlParams = new URLSearchParams(window.location.search);
+const keyword = urlParams.get('q');
+const wordSpan = document.getElementById("searchWord");
+const card1 = document.getElementById("card1");
+const card2 = document.getElementById("card2");
+// 配置：single:true=只1条信息，single:false=两条信息
+const resultMap = {
+    "谢湄":{
+        single:false,
+        title1:"一个深耕实业一个深耕艺术，兄妹俩是彼此的底气",
+        link1:"xie.html?q="+keyword,
+        title2:"两届冠军同框，这就是强者的惺惺相惜！",
+        link2:"two.html?q="+keyword
+    },
+    "谢川":{
+        single:true,
+        title1:"一个深耕实业一个深耕艺术，兄妹俩是彼此的底气",
+        link1:"xie.html?q="+keyword
+    },
+    "沈依莲":{
+        single:false,
+        title1:"新晋冠军沈依莲深夜与男子幽会？",
+        link1:"shen.html?q="+keyword,
+        title2:"两届冠军同框，这就是强者的惺惺相惜！",
+        link2:"two.html?q="+keyword
+    },
+    "魏渊":{
+        single:true,
+        title1:"城南市钢琴比赛 | 官方赛事信息",
+        link1:"piano.html?q="+keyword
+    },
+    "唐堂":{
+        single:true,
+        title1:"画家唐堂成立个人画室，专注艺术创作",
+        link1:"tang.html?q="+keyword}
+}
+if(resultMap[keyword]){
+    const data = resultMap[keyword];
+    wordSpan.innerText = keyword;
+    //卡片1 必定显示
+    card1.querySelector(".card-title").innerText = data.title1;
+    card1.querySelector(".card-key").innerText = `关键词：${keyword}`;
+    card1.onclick = ()=>location.href=data.link1;
+    if(data.single){
+        //只有一条结果，隐藏card2
+        card2.style.display = "none";
+    }else{
+        //两条结果，显示card2
+        card2.style.display = "block";
+        card2.querySelector(".card-title").innerText = data.title2;
+        card2.querySelector(".card-key").innerText = `关键词：${keyword}`;
+        card2.onclick = ()=>location.href=data.link2;
+    }
+}else{
+    //没有匹配到，返回搜索页
+    location.href="testimony.html";
+}
+</script>
+</body>
+</html>

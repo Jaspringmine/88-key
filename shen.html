@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新闻详情</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background:#fff;
+    color:#333;
+    line-height:1.7;
+}
+.header-top{
+    background:#f8fafc;
+    padding:14px 24px;
+    font-size:16px;
+    color:#444;
+}
+.container{
+    max-width:860px;
+    margin:40px auto;
+    padding:0 30px;
+}
+.back{
+    font-size:16px;
+    color:#666;
+    cursor:pointer;
+    margin-bottom:28px;
+}
+.back:hover{
+    color:#222;
+}
+h1{
+    font-size:28px;
+    line-height:1.4;
+    margin-bottom:12px;
+}
+.news-meta{
+    color:#666;
+    font-size:16px;
+    padding-bottom:20px;
+    border-bottom:1px solid #ddd;
+    margin-bottom:24px;
+}
+/* 图片区域 */
+.img-box{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+.img-box img{
+    width:100%;
+    display:block;
+}
+.img-caption{
+    text-align:center;
+    font-size:15px;
+    color:#555;
+    margin-bottom:24px;
+}
+.content p{
+    font-size:18px;
+    margin-bottom:18px;
+    text-indent:2em;
+}
+/* 返回桌面按钮 */
+.btn-back-desktop{
+    margin-top:40px;
+    padding:10px 18px;
+    background:#1f4e79;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+.btn-back-desktop:hover{
+    background:#2c5f8a;
+}
+</style>
+</head>
+<body>
+    <div class="header-top">
+        ● 城南警察厅数据部
+    </div>
+    <div class="container">
+        <div class="back" onclick="location.href='result.html?q=沈依莲'">← 返回</div>
+        <h1>新晋冠军沈依莲被拍到深夜与黑衣男子幽会</h1>
+        <div class="news-meta">城南本地事儿 3月4日讯</div>
+
+        <!-- 图片部分，把图片放到同文件夹，文件名改成shen.jpg -->
+        <div class="img-box">
+            <img src="shen.jpg" alt="沈依莲">
+        </div>
+        <div class="img-caption">沈依莲与神秘男子。照片摄于滨江步道附近。</div>
+
+        <div class="content">
+            <p>本报讯 城南市去年的钢琴大赛总冠军沈依莲，夺冠热度回落、恢复日常行程后，近日被八卦媒体拍到深夜私行画面，与一名黑衣男子在僻静滨江步道独处近两小时，举止亲昵，相关内容曝光后迅速冲上本地社交平台热搜高位。</p>
+            <p>画面拍摄于沈依莲的无公开行程日深夜，她刻意从小区侧门低调打车前往临江观景区域，与早已等候在此的黑衣男子并肩散步、长椅对坐，男子多次抬手替她拢好被江风吹乱的披肩，相处状态熟稔松弛，全程避开公共镜头，待沈依莲坐上网约车离开后才独自返程，两人均未露出完整正脸。</p>
+            <p>此前沈依莲一直以“专注练琴零绯闻”的清冷演奏新人形象示人，夺冠采访中曾公开表示后续全部重心放在巡演筹备上。相关爆料流出后网友讨论分化，有粉丝认为男子是助理或亲友，仅为普通私下会面，也有路人判断二人已维持亲密关系许久。截至发稿，沈依莲方全程保持冷处理，未发布任何回应或声明，事件后续暂无明确走向。</p>
+        </div>
+        <button class="btn-back-desktop" onclick="location.href='testimony.html'">返回搜索桌面</button>
+    </div>
+</body>
+</html>
