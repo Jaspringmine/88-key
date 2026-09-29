@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手机解锁</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#e9ecef; /*浅灰色背景*/
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.unlock-box{
+    width:340px;
+    background:#f5f5f5;
+    border-radius:40px;
+    padding:40px 30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    text-align:center;
+}
+.status-bar{
+    font-size:14px;
+    color:#666;
+    margin-bottom:30px;
+}
+.phone-title{
+    font-size:18px;
+    color:#333;
+    margin-bottom:20px;
+}
+.dots{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-bottom:30px;
+}
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:2px solid #999;
+    background:#fff;
+}
+.dot.active{
+    background:#333;
+    border-color:#333;
+}
+.tip{
+    font-size:14px;
+    color:#666;
+    margin-bottom:20px;
+    min-height:20px;
+}
+.keyboard{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+.key{
+    height:50px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.15s;
+}
+.key:hover{
+    background:#e0e0e0;
+}
+.key.delete{
+    font-size:14px;
+    color:#555;
+}
+.back-link{
+    display:inline-block;
+    margin-top:24px;
+    font-size:14px;
+    color:#666;
+    text-decoration:none;
+}
+.back-link:hover{
+    color:#333;
+}
+</style>
+</head>
+<body>
+
+<div class="unlock-box">
+    <div class="status-bar"> </div>
+    <div class="phone-title">请输入密码</div>
+
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="tip" id="tip">请输入四位数字密码</div>
+
+    <div class="keyboard">
+        <button class="key" data-key="1">1</button>
+        <button class="key" data-key="2">2</button>
+        <button class="key" data-key="3">3</button>
+        <button class="key" data-key="4">4</button>
+        <button class="key" data-key="5">5</button>
+        <button class="key" data-key="6">6</button>
+        <button class="key" data-key="7">7</button>
+        <button class="key" data-key="8">8</button>
+        <button class="key" data-key="9">9</button>
+        <button class="key delete" data-key="delete">删除</button>
+        <button class="key" data-key="0">0</button>
+        <button class="key delete" data-key="cancel">返回</button>
+    </div>
+
+    <a class="back-link" href="jinruchat.html">返回物证手机页面</a>
+</div>
+
+<script>
+// 固定这台手机密码，直接在这里修改4位数字
+const correctPassword = "1990";
+let input = "";
+
+const tip = document.getElementById("tip");
+const dots = document.querySelectorAll(".dot");
+
+function updateDots(){
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index < input.length);
+    });
+}
+
+function checkPassword(){
+    if(input === correctPassword){
+        tip.textContent = "解锁成功，正在进入聊天记录…";
+        setTimeout(() => {
+            // ✅ 密码正确后跳转的聊天详情页面，改成你自己的文件名
+            window.location.href = "phone4.html";
+        }, 600);
+    }else{
+        tip.textContent = "密码错误，请重新输入";
+        input = "";
+        updateDots();
+    }
+}
+
+document.querySelectorAll(".key").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const key = btn.dataset.key;
+
+        if(key === "delete"){
+            input = input.slice(0, -1);
+        }else if(key === "cancel"){
+            // 返回物证手机页面
+            window.location.href = "jinruchat.html";
+            return;
+        }else if(input.length < 4){
+            input += key;
+        }
+
+        updateDots();
+
+        if(input.length === 4){
+            checkPassword();
+        }
+    });
+});
+</script>
+
+</body>
+</html>

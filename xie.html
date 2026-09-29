@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新闻详情</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background:#ffffff;
+    color:#333;
+    line-height:1.7;
+}
+.header-top{
+    background:#f8fafc;
+    padding:14px 24px;
+    font-size:16px;
+    color:#444;
+}
+.container{
+    max-width:920px;
+    margin:36px auto;
+    padding:0 28px;
+}
+.back{
+    font-size:16px;
+    color:#666;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+.back:hover{
+    color:#222;
+}
+h1{
+    font-size:28px;
+    line-height:1.4;
+    margin-bottom:10px;
+}
+.news-meta{
+    color:#666;
+    font-size:16px;
+    padding-bottom:16px;
+    border-bottom:1px solid #dddddd;
+    margin-bottom:24px;
+}
+.img-box{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+.img-box img{
+    width:100%;
+    display:block;
+}
+.img-caption{
+    text-align:center;
+    font-size:15px;
+    color:#555;
+    margin-bottom:24px;
+}
+.content p{
+    font-size:17px;
+    margin-bottom:16px;
+    text-indent:2em;
+}
+.btn-back-desktop{
+    margin-top:30px;
+    padding:9px 16px;
+    background:#1f4e79;
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:15px;
+}
+.btn-back-desktop:hover{
+    background:#2c5f8a;
+}
+</style>
+</head>
+<body>
+    <div class="header-top">
+        ● 城南警察厅数据部
+    </div>
+    <div class="container">
+        <div class="back" id="backBtn">← 返回</div>
+        <h1>一个深耕实业一个深耕艺术，兄妹俩是彼此的底气</h1>
+        <div class="news-meta">城南本地事儿 7月4日讯</div>
+
+        <div class="img-box">
+            <img src="images/xie.jpg" alt="谢湄谢川">
+        </div>
+        <div class="img-caption">谢湄、谢川兄妹二人在演出活动后台合影。照片摄于城南艺术中心后台。</div>
+
+        <div class="content">
+            <p>本报讯 在城南，谢家兄妹的好感情几乎是所有人都有目共睹的公开事。</p>
+            <p>谢湄每次出席活动，谢川无论当天日程排得有多满，一定会抽出时间到场。他不会站在台上抢妹妹的风头，只会低调地站在人群里默默注视着妹妹，等所有宾客交流得差不多了，才走过去给她递上一杯提前备好的温水。</p>
+            <p>每年年底谢湄过生日，谢川无论风雨都会亲手为谢湄买回蛋糕，对他而言这个月的5号必须是留给妹妹的。谢湄去外地出差，收拾行李前不用看清单就知道，谢川一定会悄悄给她的行李箱里塞好她常用的药和保暖的毯子。</p>
+            <p>很少有人注意到，谢川的公文包里永远固定装着一个银色的<strong>小药盒</strong>。</p>
+            <p>谢湄之前在彩排现场站得久了突然脸色发白，周围人慌乱起来的时候，谢川已经第一时间把药递到了她手里，扶着人到休息区坐下，整套动作熟得像已经演练过无数次。谢家兄妹二人的感情实属亲密，他们是彼此最大的底气。</p>
+        </div>
+        <button class="btn-back-desktop" onclick="location.href='testimony.html'">返回搜索桌面</button>
+    </div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const keyword = urlParams.get('q');
+document.getElementById("backBtn").onclick = function(){
+    if(keyword !== null && keyword.trim() !== ""){
+        location.href = `result.html?q=${encodeURIComponent(keyword)}`;
+    }else{
+        // 如果丢失参数，兜底方案：回到搜索结果页（谢湄），你可以按需修改
+        location.href = "result.html?q=谢湄";
+    }
+}
+</script>
+</body>
+</html>
