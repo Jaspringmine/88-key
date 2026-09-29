@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八十八键证词 - 最终推论</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#222222;
+    min-height:100vh;
+    padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+/* 顶部封面图区域 */
+.cover-box{
+    width:820px;
+    height:320px;
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:24px;
+}
+.cover-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.title-text{
+    position:absolute;
+    bottom:30px;
+    left:40px;
+    font-size:80px;
+    color:#ffffff;
+    font-weight:bold;
+}
+/* 白色输入卡片 */
+.input-card{
+    width:820px;
+    background:#ffffff;
+    border-radius:12px;
+    padding:36px 48px;
+}
+.item-row{
+    margin-bottom:26px;
+}
+.item-row:last-child{
+    margin-bottom:0;
+}
+.label-text{
+    font-size:18px;
+    color:#333;
+    margin-bottom:10px;
+    display:block;
+}
+.name-input{
+    width:100%;
+    height:46px;
+    border:1px solid #d8d8d8;
+    border-radius:24px;
+    padding:0 20px;
+    font-size:16px;
+    outline:none;
+}
+.name-input:focus{
+    border-color:#234b8b;
+}
+/* 提交按钮 */
+.submit-btn{
+    margin-top:32px;
+    width:100%;
+    height:48px;
+    background:#234b8b;
+    color:#fff;
+    border:none;
+    border-radius:24px;
+    font-size:17px;
+    cursor:pointer;
+}
+.submit-btn:hover{
+    background:#1a386b;
+}
+</style>
+</head>
+<body>
+    <!-- 顶部封面图片区域 -->
+    <div class="cover-box">
+        <img class="cover-img" src="images/cover.png" alt="八十八键证词">
+        <div class="title-text"> </div>
+    </div>
+
+    <!-- 答题卡片 -->
+    <div class="input-card">
+        <div class="item-row">
+            <label class="label-text">你认为谢湄是谁杀的？</label>
+            <input class="name-input" id="q1" type="text" placeholder="输入姓名">
+        </div>
+        <div class="item-row">
+            <label class="label-text">凶手的作案动机是？</label>
+            <input class="name-input" id="q2" type="text" placeholder="清除竞争对手/谋取保金/利益驱动/秘密灭口/失手杀人">
+        </div>
+        <div class="item-row">
+            <label class="label-text">谢湄身上的淤青是谁弄的？</label>
+            <input class="name-input" id="q3" type="text" placeholder="输入姓名">
+        </div>
+        <button class="submit-btn" id="submitBtn">提交推论</button>
+    </div>
+
+<script>
+const submitBtn = document.getElementById('submitBtn');
+submitBtn.addEventListener('click',()=>{
+    // 获取输入内容，去除前后空格，统一转成中文小写（消除大小写/空格干扰）
+    let ans1 = document.getElementById('q1').value.trim();
+    let ans2 = document.getElementById('q2').value.trim();
+    let ans3 = document.getElementById('q3').value.trim();
+
+    // 设置标准答案
+    const std1 = "魏渊";
+    const std2 = "失手杀人";
+    const std3 = "魏渊";
+
+    let correctCount = 0;
+    if(ans1 === std1) correctCount++;
+    if(ans2 === std2) correctCount++;
+    if(ans3 === std3) correctCount++;
+
+    // 根据答对数量跳转对应页面
+    if(correctCount === 3){
+        // 三题全对，跳成功结局
+        window.location.href = "success.html";
+    }else if(correctCount === 2){
+        // 答对2题，跳半对结局
+        window.location.href = "half.html";
+    }else{
+        // 答对1题及以下，跳失败结局
+        window.location.href = "fail.html";
+    }
+})
+</script>
+</body>
+</html>
