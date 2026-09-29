@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的备忘录</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:#c0c0c0; /* XP经典灰色背景 */
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    padding:20px;
+}
+/* XP窗口容器 */
+.xp-window{
+    width:98%;
+    max-width:1200px;
+    border:2px solid;
+    border-color:#ffffff #808080 #808080 #ffffff;
+    background:#c0c0c0;
+}
+/* 窗口标题栏 蓝色 */
+.window-titlebar{
+    background: #000080;
+    color:white;
+    padding:4px 6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.title-text{
+    font-weight:bold;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+.title-icon{
+    width:16px;
+    height:16px;
+}
+/* 右上角最小化 最大化 关闭按钮 */
+.window-buttons{
+    display:flex;
+    gap:3px;
+}
+.win-btn{
+    width:20px;
+    height:20px;
+    border:2px solid;
+    border-color:#fff #404040 #404040 #fff;
+    background:#c0c0c0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    cursor:pointer;
+}
+/* 菜单栏 */
+.menu-bar{
+    display:flex;
+    gap:4px;
+    padding:4px 6px;
+}
+.menu-item{
+    font-size:14px;
+    padding:2px 8px;
+    cursor:pointer;
+}
+.menu-item:hover{
+    background:#000080;
+    color:white;
+}
+/* 加粗菜单 */
+.menu-item.bold{
+    font-weight:bold;
+}
+/* 工具栏 */
+.tool-bar{
+    display:flex;
+    align-items:center;
+    padding:4px 8px;
+    gap:4px;
+    border-top:1px solid #888;
+    border-bottom:1px solid #888;
+}
+.tool-btn{
+    border:2px solid;
+    border-color:#fff #555 #555 #fff;
+    background:#c0c0c0;
+    padding:3px 8px;
+    font-size:13px;
+    cursor:pointer;
+}
+.tool-btn:active{
+    border-color:#555 #fff #fff #555;
+}
+.sep{
+    width:2px;
+    height:20px;
+    background:#888;
+    margin:0 4px;
+}
+/* ====== 替换原来的textarea，可编辑div ====== */
+.editor-wrap{
+    padding:6px;
+}
+#memo{
+    width:100%;
+    min-height:600px;
+    border:2px solid;
+    border-color:#808080 #ffffff #ffffff #808080;
+    padding: 50px 4px 4px 4px;
+    font-family: "MS Sans Serif", monospace;
+    font-size:14px;
+    background:#fff;
+    white-space:pre-wrap;
+}
+/* 底部状态栏 */
+.status-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:4px 8px;
+    border-top:1px solid #888;
+}
+.status-text{
+    border:1px solid #888;
+    padding:2px 10px;
+    font-size:13px;
+    background:#c0c0c0;
+}
+.back-desktop-btn{
+    border:2px solid;
+    border-color:#fff #555 #555 #fff;
+    background:#c0c0c0;
+    padding:3px 10px;
+    font-size:13px;
+    cursor:pointer;
+}
+.back-desktop-btn:active{
+    border-color:#555 #fff #fff #555;
+}
+</style>
+</head>
+<body>
+<div class="xp-window">
+    <!-- 标题栏 -->
+    <div class="window-titlebar">
+        <div class="title-text">
+            <span class="title-icon">📄</span>
+            我的备忘录
+        </div>
+        <div class="window-buttons">
+            <div class="win-btn">_</div>
+            <div class="win-btn">□</div>
+            <div class="win-btn" onclick="window.location.href='game.html'">×</div>
+        </div>
+    </div>
+    <!-- 菜单栏：点击【已编写文件】触发填充文本 -->
+    <div class="menu-bar">
+        <div class="menu-item">文件(F)</div>
+        <div class="menu-item">编辑(E)</div>
+        <div class="menu-item">格式(O)</div>
+        <div class="menu-item">帮助(H)</div>
+        <div class="menu-item bold" onclick="fillNotice()">已编写文件</div>
+    </div>
+    <!-- 工具栏 -->
+    <div class="tool-bar">
+        <button class="tool-btn">文件(F)</button>
+        <div class="sep"></div>
+        <button class="tool-btn">☰</button>
+        <div class="sep"></div>
+        <button class="tool-btn">格式(O)</button>
+        <button class="tool-btn">h (H)</button>
+    </div>
+    <!-- 把原来textarea换成可编辑div contenteditable="true" -->
+    <div class="editor-wrap">
+        <div id="memo" contenteditable="true"></div>
+    </div>
+    <!-- 底部状态栏 行列 + 返回桌面按钮 -->
+    <div class="status-bar">
+        <button class="back-desktop-btn" onclick="window.location.href='game.html'">返回桌面</button>
+        <div class="status-text">行数: 5 列数: 16</div>
+    </div>
+</div>
+
+<script>
+const memoEditor = document.getElementById('memo');
+const statusText = document.querySelector('.status-text');
+
+// 点击【已编写文件】填充加粗通知
+function fillNotice(){
+    // <b> 和 </b> 就是加粗标签
+    memoEditor.innerHTML = `        <b>各位警员：
+        近日警厅运行系统的防火墙多次被攻击，为保数据安全，警厅决定采用辅助验证。
+        辅助验证的账号为各位警员的名字缩写，而密码与我们身处的这座城市息息相关，相信大家都知道。
+        如有不便，还请谅解。
+        城南警厅数据部</b>`;
+}
+
+// 简易行列统计（简单适配）
+memoEditor.addEventListener('input', function(){
+    const text = this.innerText;
+    const lines = text.split('\n').length;
+    statusText.innerText = `行数: ${lines} 列数: ${text.length}`;
+})
+</script>
+</body>
+</html>
+

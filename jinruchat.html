@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物证｜四部破碎手机</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#f7f9fb;
+    min-height:100vh;
+    padding:40px 20px;
+}
+.top-path-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#ffffff;
+    padding:14px 24px;
+    font-size:16px;
+    color:#444;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    z-index:99;
+}
+.container{
+    max-width:900px;
+    margin:70px auto 0;
+}
+/* 2行2列网格容器 */
+.phone-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+    border:1px solid #e1e6eb;
+    border-radius:6px;
+    padding:24px;
+    background:#ffffff;
+    margin-bottom:24px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+}
+/* 手机卡片外壳 */
+.phone-item{
+    cursor:pointer;
+    text-align:center;
+    transition: 0.2s;
+    text-decoration: none;
+    background:#222222;
+    padding:12px;
+    border-radius:24px;
+}
+.phone-item:hover{
+    transform: translateY(-4px);
+}
+/* 手机屏幕内图片 */
+.phone-item img{
+    width:100%;
+    border-radius:12px;
+    display:block;
+}
+.phone-item p{
+    margin-top:12px;
+    font-size:16px;
+    color:#ffffff;
+}
+.back-btn{
+    margin-top:10px;
+    display:block;
+    width:fit-content;
+    padding:12px 26px;
+    background:#ffffff;
+    border:1px solid #cfd6de;
+    border-radius:4px;
+    font-size:18px;
+    cursor:pointer;
+    text-decoration:none;
+    color:#333;
+}
+.back-btn:hover{
+    background:#f0f4f8;
+}
+</style>
+</head>
+<body>
+<div class="top-path-bar">城南警察厅数据部 / 物证手机</div>
+<div class="container">
+    <div class="phone-grid">
+        <a class="phone-item" href="unlock1.html">
+            <img src="images/谢川壁纸3.jpg" alt="1号手机壁纸">
+            <p>1号手机｜点击查看聊天记录</p>
+        </a>
+        <a class="phone-item" href="unlock2.html">
+            <img src="images/沈依莲壁纸3.jpg" alt="2号手机壁纸">
+            <p>2号手机｜点击查看聊天记录</p>
+        </a>
+        <a class="phone-item" href="unlock3.html">
+            <img src="images/魏渊壁纸3.jpg" alt="3号手机壁纸">
+            <p>3号手机｜点击查看聊天记录</p>
+        </a>
+        <a class="phone-item" href="unlock4.html">
+            <img src="images/秦大成壁纸3.jpg" alt="4号手机壁纸">
+            <p>4号手机｜点击查看聊天记录</p>
+        </a>
+    </div>
+    <!-- 返回按钮修改为返回电脑桌面，这里你自行修改href目标页面 -->
+    <a href="game.html" class="back-btn">返回电脑桌面</a>
+</div>
+</body>
+</html>
