@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物档案</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background-color:#234b8b;
+    min-height:100vh;
+    padding-top:70px;  /* 给顶部导航预留空间 */
+    padding:70px 20px 40px;
+}
+
+/* ========== 顶部白色导航栏，和game完全一致 ========== */
+.top-path-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:52px;
+    background-color:#ffffff;
+    display:flex;
+    align-items:center;
+    padding:0 24px;
+    color:#234b8b;
+    font-size:17px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08);
+    border-bottom:1px solid #eceff4;
+}
+.path-item{
+    display:flex;
+    align-items:center;
+}
+.path-divider{
+    margin:0 12px;
+    opacity:0.7;
+}
+.path-text{
+    color:#234b8b;
+    opacity:0.92;
+}
+
+h1{
+    color:#ffffff;
+    text-align:center;
+    margin-top:40px;
+    margin-bottom:80px;
+    font-size:36px;
+    font-weight:700;
+    letter-spacing:12px;
+    font-family:"Microsoft Yahei","PingFang SC",sans-serif;
+    padding-left:12px;
+    text-shadow:
+        0 0 10px rgba(100,170,255,0.6),
+        0 0 24px rgba(60,130,220,0.35);
+}
+
+/* 文件夹网格容器 2行4列 */
+.folder-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:40px;
+    max-width:1000px;
+    margin:60px auto 0;
+}
+
+.folder-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    cursor:pointer;
+    transition: transform 0.25s ease;
+}
+.folder-item:hover{
+    transform: translateY(-8px);
+}
+/* 文件夹图标 */
+.folder-icon{
+    width:160px;
+    height:130px;
+    background:#f8f0d9;
+    border-radius:14px;
+    position:relative;
+    box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+.folder-icon::before{
+    content:"";
+    position:absolute;
+    top:-12px;
+    left:0;
+    width:70px;
+    height:22px;
+    background:#f8f0d9;
+    border-radius:8px 8px 0 0;
+}
+.folder-num{
+    color:#fff;
+    font-size:36px;
+    font-weight:500;
+}
+/* 返回按钮 */
+.back-btn{
+    position:fixed;
+    right:40px;
+    bottom:40px;
+    padding:14px 30px;
+    background:#ffffff;
+    color:#234b8b;
+    border-radius:999px;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    transition:transform 0.2s;
+}
+.back-btn:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+    <!-- 顶部路径导航栏 -->
+    <div class="top-path-bar">
+        <div class="path-item">
+            <span class="path-text">案件系统</span>
+            <span class="path-divider">></span>
+            <span class="path-text">电脑桌面</span>
+            <span class="path-divider">></span>
+            <span class="path-text">人物档案</span>
+        </div>
+    </div>
+
+    <h1>人物档案</h1>
+    <div class="folder-grid">
+        <div class="folder-item" onclick="window.location.href='person1.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">1</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='person2.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">2</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='person3.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">3</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='person4.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">4</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='fuzhu.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">5</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='fuzhu2.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">6</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='juemi.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">7</div>
+        </div>
+        <div class="folder-item" onclick="window.location.href='juemi2.html'">
+            <div class="folder-icon"></div>
+            <div class="folder-num">8</div>
+        </div>
+    </div>
+
+    <div class="back-btn" onclick="window.location.href='game.html'">返回电脑界面</div>
+</body>
+</html>
