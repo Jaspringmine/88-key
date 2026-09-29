@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物档案 - 柴舒静</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft Yahei",sans-serif;
+}
+body{
+    background:#ffffff;
+    padding:20px;
+}
+/* 顶部面包屑导航 和你character.html保持一致 */
+.top-path-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:52px;
+    background-color:#ffffff;
+    display:flex;
+    align-items:center;
+    padding:0 24px;
+    color:#234b8b;
+    font-size:17px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08);
+    border-bottom:1px solid #eceff4;
+}
+.path-item{
+    display:flex;
+    align-items:center;
+}
+.path-divider{
+    margin:0 12px;
+    opacity:0.7;
+}
+.path-text{
+    color:#234b8b;
+    opacity:0.92;
+}
+.container{
+    max-width:900px;
+    margin:70px auto 30px;
+    border:2px solid #333333;
+    padding:24px;
+}
+.top-info-line{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:16px;
+}
+.header-box{
+    border:2px solid #333;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding:16px;
+    margin-bottom:24px;
+}
+.header-left h1{
+    font-size:80px;
+    line-height:1;
+}
+.header-left p{
+    font-size:14px;
+}
+.header-right{
+    padding-left:20px;
+}
+.header-right h2{
+    font-size:42px;
+}
+.header-right .small-text{
+    font-size:14px;
+    line-height:1.6;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+    border:2px solid #333;
+    margin-bottom:24px;
+}
+table td, table th{
+    border:2px solid #333;
+    padding:12px;
+    font-size:18px;
+}
+.title-row th{
+    font-size:22px;
+}
+.photo-cell{
+    width:30%;
+    text-align:center;
+    font-size:24px;
+    color:#555;
+}
+.label-cell{
+    width:15%;
+    text-align:center;
+}
+/* 返回按钮，和之前页面风格统一 */
+.back-btn{
+    width:100%;
+    margin-top:20px;
+    padding:12px 0;
+    background:#ffffff;
+    color:#234b8b;
+    border: 1px solid #234b8b;
+    border-radius:6px;
+    font-size:18px;
+    cursor:pointer;
+}
+.back-btn:hover{
+    background:#f0f4f9;
+}
+</style>
+</head>
+<body>
+    <!-- 顶部面包屑导航 -->
+    <div class="top-path-bar">
+        <div class="path-item">
+            <span class="path-text">案件系统</span>
+            <span class="path-divider">></span>
+            <span class="path-text">电脑桌面</span>
+            <span class="path-divider">></span>
+            <span class="path-text">人物档案</span>
+            <span class="path-divider">></span>
+            <span class="path-text">柴舒静档案</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="top-info-line">
+            <span>档案编号：0007</span>
+            <span>机密等级：⭐⭐⭐</span>
+        </div>
+
+        <div class="header-box">
+            <div class="header-left">
+                <h1>人物档案</h1>
+                <p>Character profile in the Public Security Bureau</p>
+            </div>
+            <div class="header-right">
+                <h2>城南市警察局 <span style="font-size:16px">号备案<br>for the record</span></h2>
+                <div class="small-text">
+                    案件名称：八十八键证词<br>
+                    案件编号：0314<br>
+                    管辖单位：城南市警察局刑侦支队<br>
+                    档案类型：机密
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <tr class="title-row">
+                <th colspan="3">基本信息（Basic Information）</th>
+            </tr>
+            <tr>
+                <td rowspan="6" class="photo-cell">
+                    <img src="images/person7.jpg" style="width:100%;height:auto;object-fit:cover;">
+                </td>
+                <td class="label-cell">姓 名</td>
+                <td>柴舒静</td>
+            </tr>
+            <tr>
+                <td class="label-cell">性 别</td>
+                <td>女</td>
+            </tr>
+            <tr>
+                <td class="label-cell">身高/体重/鞋码</td>
+                <td>164cm/45kg/36码</td>
+            </tr>
+            <tr>
+                <td class="label-cell">出生日期</td>
+                <td>2001年10月9日（21岁）</td>
+            </tr>
+            <tr>
+                <td class="label-cell">职 业</td>
+                <td>城南大学钢琴系学生</td>
+            </tr>
+            <tr>
+                <td class="label-cell">与死者关系</td>
+                <td>同学</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td style="width:30%;text-align:center;font-size:22px;">证言笔录</td>
+                <td style="width:70%;">自述在学校里与谢湄玩得不错，谢湄长相漂亮加上性格开朗，有很多男生喜欢，甚至还有一些高身份的男性也经常对谢湄示好。之前发现谢湄手臂上很多淤青，试着询问过，可谢湄的表情很不好，像是要哭出来，后面就没有再提了。</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td style="width:30%;text-align:center;font-size:22px;">备注</td>
+                <td style="width:70%;">证人留言属实。</td>
+            </tr>
+        </table>
+        <button class="back-btn" onclick="window.location.href='character.html'">返回人物档案列表</button>
+    </div>
+</body>
+</html>
