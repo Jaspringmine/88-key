@@ -111,7 +111,6 @@ h1{
     <div class="shield-icon">🛡️</div>
     <h1>城南警厅辅助验证系统</h1>
     <div class="desc-text">您正在进入城南警厅辅助验证系统</div>
-
     <div class="input-row">
         <div class="input-item">
             <input type="text" placeholder="👤 账号" id="songxiaowen">
@@ -122,23 +121,37 @@ h1{
             <input type="password" placeholder="🔒 密码" id="19870921">
         </div>
     </div>
-
     <button class="login-btn" onclick="loginCheck()">登录</button>
     <!-- 返回人物档案列表按钮，跳转到character.html -->
     <button class="back-btn" onclick="window.location.href='character.html'">返回人物档案列表</button>
-
     <div class="status-text">
         <span class="green-dot"></span>系统运行正常 · 安全连接 · 数据加密
     </div>
 </div>
-
 <script>
 function loginCheck(){
-    // =========【修改这里，填写你登录成功后要跳转的页面文件名】=========
-    // 示例：window.location.href = "game.html";  登录成功跳转到电脑桌面game.html
+    // =========在这里设置正确账号和密码=========
+    const rightAccount = "songxiaowen";
+    const rightPwd = "19870921";
+
+    let account = document.getElementById("songxiaowen").value.trim();
+    let pwd = document.getElementById("19870921").value.trim();
+
+    // 校验：账号密码不能为空
+    if(account === "" || pwd === ""){
+        alert("账号和密码不能为空，请填写完整信息！");
+        return;
+    }
+    // 校验：账号密码是否匹配
+    if(account !== rightAccount || pwd !== rightPwd){
+        alert("账号或密码错误，请重新输入！");
+        return;
+    }
+    // 全部验证通过，跳转 person6.html
     window.location.href = "person6.html";
 }
 </script>
 </body>
 </html>
+
 
