@@ -130,17 +130,27 @@ h1{
 </div>
 <script>
 function loginCheck(){
-    // 获取两个输入框的值
+    // =====在这里设置你游戏的【正确账号、密码】=====
+    const correctAccount = "songxiaowen";
+    const correctPwd = "19870921";
+
+    // 获取输入框内容，trim去掉首尾空格
     let account = document.getElementById("songxiaowen").value.trim();
     let pwd = document.getElementById("19870921").value.trim();
 
-    // 判断账号或者密码为空
+    // 判断：账号或密码为空
     if(account === "" || pwd === ""){
         alert("账号和密码不能为空，请填写完整信息！");
-        return; // 终止函数，不跳转
+        return;
     }
 
-    // 都填写了，才跳转页面
+    // 判断账号密码是否匹配
+    if(account !== correctAccount || pwd !== correctPwd){
+        alert("账号或密码错误，请重新输入！");
+        return;
+    }
+
+    // 全部校验通过，跳转到 qin.html
     window.location.href = "photo.html";
 }
 </script>
